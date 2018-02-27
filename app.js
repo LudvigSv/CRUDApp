@@ -68,10 +68,10 @@ app.use((req, res, next) => {
 });
 
 // ROUTES GO HERE (middleware that goes always before 404)
+app.use("/", authRoutes);
 app.use("/", index);
 app.use("/users", users);
 app.use("/", trips);
-app.use("/", authRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: red;
+  color: black;
 }
 
 a {
@@ -46,6 +46,8 @@ nav.navbar {
 
 .home-heading {
   background-image: url("hurricane-new.png");
+  background-size: cover;
+  opacity: 0.6;
   height: 75vh;
   padding: 0 30%;
   position: relative;
@@ -65,4 +67,9 @@ nav.navbar {
 
 .home-heading-wrapper > p {
   font-size: 2rem;
+}
+
+.trip-post {
+  font-size: 1.5em;
+  margin-left: 100px;
 }

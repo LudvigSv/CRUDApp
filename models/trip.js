@@ -6,7 +6,8 @@ const tripSchema = new Schema({
   pickupLocation: String,
   departureDate: String,
   seats: Number,
-  music: String,
+  gas: Number,
+  passengers: [],
   _creator: {
     type: Schema.Types.ObjectId,
     required: true

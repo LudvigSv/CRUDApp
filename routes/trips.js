@@ -8,10 +8,6 @@ router.get("/trips", function(req, res, next) {
   res.render("trips");
 });
 
-router.get("/trips-all", (req, res, next) => {
-  res.render("trips-all");
-});
-
 // Route Handler for Create Trip - POST
 router.post("/trips", (req, res, next) => {
   // checking for current user
@@ -28,7 +24,7 @@ router.post("/trips", (req, res, next) => {
     pickupLocation: req.body.pickupLocationInput,
     departureDate: req.body.departureDateInput,
     seats: req.body.seatsInput,
-    music: req.body.musicInput,
+    gasEstimate: req.body.gasInput,
     _creator: req.user._id
   });
 
@@ -46,6 +42,45 @@ router.post("/trips", (req, res, next) => {
     // if it saves.
     // redireting to a URL
     return res.redirect("/");
+  });
+});
+
+router.get("/find-rides", (req, res, next) => {
+  Trip.find((err, trips) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("find-rides", { trips: trips });
+  });
+});
+
+router.get("/:id", (req, res, next) => {
+  Trip.findById(req.params.id, (err, trip) => {
+    if (err) {
+      return next(err);
+    }
+    console.log("found trip is:", trip);
+    // return res.send("trips");
+  });
+});
+
+// claiming the trips
+router.post("/:id/add", (req, res, next) => {
+  // find the trip
+  const tripId = req.params.id;
+  Trip.findById(tripId, (err, theTrip) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    req.user.rides.push(theTrip._id);
+    theTrip.passengers.push(req.user._id);
+    console.log("================");
+    console.log("user with the rides: ", req.user);
+    console.log("the trip: ", theTrip);
+    console.log("================");
+
+    res.redirect("/");
   });
 });
 

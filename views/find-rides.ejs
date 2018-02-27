@@ -1,0 +1,46 @@
+<div class="container find-rides">
+    <h2>Find Available Seats</h2>
+</div>
+
+<div class="trip-post">
+    <%trips.forEach((trip) => { %>
+        <br>
+
+        <p>
+            Destination:
+            <%= trip.destination %>
+        </p>
+
+        <br>
+
+        <p>
+            Departure Date:
+            <%=trip.departureDate%>
+        </p>
+
+        <br>
+
+        <p>
+            Pickup Location:
+            <%=trip.pickupLocation%>
+        </p>
+
+        <br>
+
+        <p>
+            Seats Available:
+            <%=trip.seats%>
+        </p>
+
+        <br>
+        <form action="/<%=trip._id%>/add" method="post">
+            <button> Claim this ride </button>
+        </form>
+        <!-- <a href="/<%=trip._id %>"> Trip Info -->
+        <!-- </a> -->
+
+
+
+        <% }) %>
+            <hr>
+</div>
