@@ -1,0 +1,30 @@
+<h2 class="updateTrip">
+    Update the Trip</h2>
+
+<form action="/users/profile/rides/<%=trip._id%>" method="POST">
+
+    <label for="destinationInput">Destination</label>
+    <input type="text" id="destinationInput" name="destinationInput" value="<%= trip.destination %>">
+    <br>
+
+    <label for="pickupLocationInput">Pickup Location</label>
+    <input type="text" name="pickupLocationInput" id="pickupLocationInput" value="<%= trip.pickupLocation %>">
+    <br>
+
+    <label for="departureDateInput">Departure Date</label>
+    <input type="date" name="departureDateInput" id="departureDateInput" value="<%= trip.departureDate %>">
+    <br>
+
+    <label for="seatsInput">Seats Available</label>
+    <input type="number" name="seatsInput" id="seatsInput" value="<%= trip.seats %>">
+    </textarea>
+    <br>
+
+    <label for="gasInput">Gas Estimate $</label>
+    <input type="number" name="gasInput" id="gasInput" value="<%= trip.gas %>">
+    </textarea>
+    <br>
+
+    <button class="btn" type="submit">update</button>
+</form>
+<a href="/users/profile" class="btn">cancel</a>

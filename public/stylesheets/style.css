@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: black;
+  /* color: black; */
 }
 
 a {
@@ -47,9 +47,9 @@ nav.navbar {
 .home-heading {
   background-image: url("hurricane-new.png");
   background-size: cover;
-  opacity: 0.6;
+  /* opacity: 0.6; */
   height: 75vh;
-  padding: 0 30%;
+  padding: 0 10%;
   position: relative;
 }
 
@@ -63,13 +63,21 @@ nav.navbar {
 
 .home-heading-wrapper > h1 {
   font-size: 9rem;
+  font-style: bold;
+  color: rgba(255, 0, 0, 0.89);
 }
 
 .home-heading-wrapper > p {
-  font-size: 2rem;
+  font-size: 3rem;
+  color: red;
+  opacity: 2;
 }
 
 .trip-post {
   font-size: 1.5em;
   margin-left: 100px;
 }
+
+/* .buttonClicked {
+  background-color: red;
+} */

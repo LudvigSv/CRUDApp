@@ -1,1 +1,73 @@
-<h2>Welcome to your Profile Page</h2>
+<div class="container">
+	<h2>
+		<%=user.username%>
+	</h2>
+
+	<button type="submit">Edit Profile</button>
+
+	<div>
+		<% console.log("user is: ====", user) %>
+
+			<h3>Trips You're Offering</h3>
+
+			<ul>
+				<% trips.forEach(oneTrip => { %>
+					<%if (user._id.equals(oneTrip._creator)) {%>
+						<li>
+							<span>
+								<b>Destination: </b>
+							</span>
+
+							<%= oneTrip.destination %>
+
+								<br>
+								<span>
+									<b>Pickup Location:</b>
+								</span>
+								<%= oneTrip.pickupLocation %>
+									<br>
+
+									<span>
+										<b>Departure Date:</b>
+									</span>
+									<%= oneTrip.departureDate %>
+										<br>
+
+										<span>
+											<b>Seats Available:</b>
+										</span>
+										<%= oneTrip.seats %>
+											<br>
+
+											<span>
+												<b>Gas Estimate:</b>
+											</span>
+											<%= oneTrip.gas %>
+												<br>
+
+
+												<button type="submit">
+													<a href="/users/profile/rides/<%=oneTrip._id%>">Update</a>
+												</button>
+
+												<form method="POST" action="/users/profile/rides/<%=oneTrip._id%>/delete">
+													<button type="submit">Delete</button>
+												</form>
+												<hr>
+
+						</li>
+
+						<% }%>
+
+							<% })%>
+
+			</ul>
+
+	</div>
+	<hr>
+
+	<div>
+		<h3>Seats You're Claiming</h3>
+
+	</div>
+</div>

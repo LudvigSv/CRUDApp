@@ -44,7 +44,7 @@ router.post("/trips", (req, res, next) => {
     return res.redirect("/");
   });
 });
-
+// display all the trips:
 router.get("/find-rides", (req, res, next) => {
   Trip.find((err, trips) => {
     if (err) {
@@ -64,6 +64,7 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
+///////////////// NOT ADDING TO MONGO DB/////////////////
 // claiming the trips
 router.post("/:id/add", (req, res, next) => {
   // find the trip
@@ -81,6 +82,99 @@ router.post("/:id/add", (req, res, next) => {
     console.log("================");
 
     res.redirect("/");
+  });
+});
+///////////////// NOT ADDING TO MONGO DB/////////////////////
+
+//----------------------------------------------------//
+
+///////////////// UPDATE USER PROFILE //////////////////////
+
+router.get("/profile/:id", (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("edit-profile", {
+      user: user
+    });
+  });
+});
+
+// router.get("/users/profile", (req, res, next) => {
+//   const updateProfile = req.params.id;
+//   User.findByIdAndUpdate( (err, theUsers) => {
+//   if (err) {
+//     return next(err);
+//   }
+//   res.render("profile", {
+//     users: theUsers
+//   });
+// });
+
+//////////////// UPDATE TRIP FROM PROFILE /////////////////
+///// EDIT TRIP//////
+router.get("/users/profile", (req, res, next) => {
+  console.log("im from the profile route");
+  Trip.find({}, (err, theTrips) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("profile", {
+      trips: theTrips
+    });
+  });
+});
+
+router.get("/users/profile/rides/:id", (req, res, next) => {
+  const tripid = req.params.id;
+  Trip.findById(tripid, (err, theTrip) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("edit-rides", {
+      trip: theTrip
+    });
+  });
+});
+
+router.post("/users/profile/rides/:id", (req, res, next) => {
+  const tripid = req.params.id;
+  const updates = {
+    destination: req.body.destinationInput,
+    pickupLocation: req.body.pickupLocationInput,
+    departureDate: req.body.departureDateInput,
+    seats: req.body.seatsInput,
+    gasEstimate: req.body.gasInput
+  };
+  Trip.findByIdAndUpdate(tripid, updates, err => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/users/profile/");
+  });
+});
+
+// Show Form to Update Trip
+router.get("/:id", (req, res, next) => {
+  const tripId = req.params.id;
+
+  console.log("edit my ride");
+
+  Trip.findById(tripId, (err, trip) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("/trips/edit-rides", { trip: trip });
+  });
+});
+
+// Delete Trip
+router.post("/users/profile/rides/:id/delete", (req, res, next) => {
+  const tripId = req.params.id;
+  Trip.findByIdAndRemove(tripId, err => {
+    res.redirect("/users/profile");
   });
 });
 

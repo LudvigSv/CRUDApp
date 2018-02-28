@@ -2,9 +2,9 @@
     <h2>Find Available Seats</h2>
 </div>
 
-<div class="trip-post">
-    <%trips.forEach((trip) => { %>
-        <br>
+
+<% trips.forEach((trip) => { %>
+    <div class="trip-post">
 
         <p>
             Destination:
@@ -33,14 +33,18 @@
         </p>
 
         <br>
+        <p>
+            Gas Estimate:
+            <%=trip.gas%>
+        </p>
+
+
         <form action="/<%=trip._id%>/add" method="post">
-            <button> Claim this ride </button>
+            <button class="buttonClicked"> Claim this ride </button>
         </form>
-        <!-- <a href="/<%=trip._id %>"> Trip Info -->
-        <!-- </a> -->
 
 
 
-        <% }) %>
-            <hr>
-</div>
+        <hr>
+    </div>
+    <% }) %>
