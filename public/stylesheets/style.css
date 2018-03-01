@@ -13,7 +13,7 @@ a {
 }
 
 nav.navbar {
-  box-shadow: 0px 4px 10px 0 rgba(22, 22, 22, 0.08);
+  box-shadow: 0px 4px 10px 0 rgba(255, 0, 0, 0.18);
   margin-bottom: 0;
 }
 
@@ -59,12 +59,13 @@ nav.navbar {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 900px;
 }
 
 .home-heading-wrapper > h1 {
   font-size: 9rem;
-  font-style: bold;
-  color: rgba(255, 0, 0, 0.89);
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.89);
 }
 
 .home-heading-wrapper > p {
@@ -74,10 +75,6 @@ nav.navbar {
 }
 
 .trip-post {
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-left: 100px;
 }
-
-/* .buttonClicked {
-  background-color: red;
-} */

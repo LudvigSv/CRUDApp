@@ -3,48 +3,51 @@
 </div>
 
 
-<% trips.forEach((trip) => { %>
-    <div class="trip-post">
 
-        <p>
-            Destination:
-            <%= trip.destination %>
-        </p>
-
-        <br>
-
-        <p>
-            Departure Date:
-            <%=trip.departureDate%>
-        </p>
-
-        <br>
-
-        <p>
-            Pickup Location:
-            <%=trip.pickupLocation%>
-        </p>
-
-        <br>
-
-        <p>
-            Seats Available:
-            <%=trip.seats%>
-        </p>
-
-        <br>
-        <p>
-            Gas Estimate:
-            <%=trip.gas%>
-        </p>
+<div class="list-group" style="width: 50%; margin:0 auto;">
+    <% trips.forEach((trip) => { %>
+        <% console.log("trip from ejs:", trip) %>
+            <% if(!trip.claimed){ %>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
 
 
-        <form action="/<%=trip._id%>/add" method="post">
-            <button class="buttonClicked"> Claim this ride </button>
-        </form>
+                    </div>
+
+                    <p class="mb-1">
+                        <b>Destination:</b>
+                        <%= trip.destination %>
+                    </p>
 
 
+                    <p class="mb-1">
+                        <b> Departure Date:</b>
+                        <%=trip.departureDate%>
+                    </p>
 
-        <hr>
-    </div>
-    <% }) %>
+
+                    <p class="mb-1">
+                        <b> Pickup Location:</b>
+                        <%=trip.pickupLocation%>
+                    </p>
+
+
+                    <p class="mb-1">
+                        <b> Seats Available:</b>
+                        <%=trip.seats%>
+                    </p>
+
+
+                    <p class="mb-1">
+                        <b> Gas Estimate: </b>
+                        <%=trip.gas%>
+                    </p>
+                    <% if((user._id.equals(trip._creator)) === false){ %>
+                        <form action="/<%=trip._id%>/add" method="post">
+                            <button class="buttonClicked"> Claim this ride </button>
+                            <% } %>
+
+                </a>
+                <% } %>
+                    <% }) %>
+</div>

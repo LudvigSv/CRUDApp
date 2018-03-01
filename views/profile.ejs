@@ -5,6 +5,8 @@
 
 	<button type="submit">Edit Profile</button>
 
+
+
 	<div>
 		<% console.log("user is: ====", user) %>
 
@@ -68,6 +70,32 @@
 
 	<div>
 		<h3>Seats You're Claiming</h3>
+
+		<% trips.forEach(oneTrip => { %>
+
+			<% oneTrip.passengers.forEach(onePassenger =>{ %>
+
+
+
+
+				<% console.log("==================") %>
+					<% console.log("user._id is: ", user._id)  %>
+
+						<% console.log("oneTrip.passenger ID is: ", onePassenger._id)  %>
+							<% console.log("==================") %>
+
+
+
+
+								<% if(user._id.equals(onePassenger._id)){ %>
+
+
+									<%= oneTrip.destination %>
+										<% } %>
+											<% }) %>
+
+												<% }) %>
+
 
 	</div>
 </div>

@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 const Trip = require("../models/trip");
+const User = require("../models/user");
 
 /* GET users listing. */
 router.get("/trips", function(req, res, next) {
@@ -24,10 +25,10 @@ router.post("/trips", (req, res, next) => {
     pickupLocation: req.body.pickupLocationInput,
     departureDate: req.body.departureDateInput,
     seats: req.body.seatsInput,
-    gasEstimate: req.body.gasInput,
+    gas: req.body.gasInput,
     _creator: req.user._id
   });
-
+  console.log("im creating");
   // Create a new Trip with the Params passed
   // in from the "/trips/new" form
   // const newTrip = new Trip(tripInfo);
@@ -35,15 +36,17 @@ router.post("/trips", (req, res, next) => {
   newTrip.save(err => {
     // Error Handling
     if (err) {
+      console.log(err);
       return next(err);
     }
 
     // Redirect to the List of Trips (/trips)
     // if it saves.
     // redireting to a URL
-    return res.redirect("/");
+    res.redirect("/users/profile");
   });
 });
+
 // display all the trips:
 router.get("/find-rides", (req, res, next) => {
   Trip.find((err, trips) => {
@@ -69,20 +72,36 @@ router.get("/:id", (req, res, next) => {
 router.post("/:id/add", (req, res, next) => {
   // find the trip
   const tripId = req.params.id;
-  Trip.findById(tripId, (err, theTrip) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    req.user.rides.push(theTrip._id);
-    theTrip.passengers.push(req.user._id);
-    console.log("================");
-    console.log("user with the rides: ", req.user);
-    console.log("the trip: ", theTrip);
-    console.log("================");
+  User.findById(req.user._id, (err, theUser) => {
+    Trip.findById(tripId, (err, theTrip) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      theTrip.passengers.push(req.user._id);
+      theTrip.claimed = true;
+      theUser.rides.push(theTrip);
+      theUser.save(err => {
+        if (err) {
+          next(err);
+          return;
+        }
+      });
 
-    res.redirect("/");
+      // console.log("================");
+      // console.log("user with the rides: ", req.user);
+      // console.log("the trip claimed:???????????? ", theTrip);
+      // console.log("================");
+      theTrip.save(err => {
+        if (err) {
+          next(err);
+          return;
+        }
+      });
+    });
+    // });
   });
+  res.redirect("/");
 });
 ///////////////// NOT ADDING TO MONGO DB/////////////////////
 
@@ -102,6 +121,10 @@ router.get("/profile/:id", (req, res, next) => {
   });
 });
 
+router.post("/profile/edit-profile/:id", (req, res, next) => {
+  const userId = req.params.id;
+});
+
 // router.get("/users/profile", (req, res, next) => {
 //   const updateProfile = req.params.id;
 //   User.findByIdAndUpdate( (err, theUsers) => {
@@ -117,12 +140,15 @@ router.get("/profile/:id", (req, res, next) => {
 ///// EDIT TRIP//////
 router.get("/users/profile", (req, res, next) => {
   console.log("im from the profile route");
-  Trip.find({}, (err, theTrips) => {
-    if (err) {
-      return next(err);
-    }
-    res.render("profile", {
-      trips: theTrips
+  User.findById(req.user._id, (err, theUser) => {
+    Trip.find({}, (err, theTrips) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("profile", {
+        trips: theTrips,
+        user: theUser
+      });
     });
   });
 });

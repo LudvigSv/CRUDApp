@@ -1,0 +1,69 @@
+<div class="container">
+    <h2 class="CreateTrip">
+
+        Create a New Trip</h2>
+
+    <div class="form-group row">
+        <form action="/trips" method="POST ">
+
+            <label for="destinationInput" class="col-sm-2 col-form-label">
+                <b>Destination</b>
+            </label>
+            <div class="col-sm-10">
+                <input type="text " id="destinationInput " name="destinationInput" placeholder="Atlanta, GA">
+            </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="pickupLocationInput" class="col-sm-2 col-form-label">
+            <b>Pickup Location</b>
+        </label>
+        <div class="col-sm-10">
+            <input type="text " name="pickupLocationInput " id="pickupLocationInput " placeholder="123 main st, Miami">
+        </div>
+    </div>
+
+    <!-- <div class="form-group row">
+                <label for="DepartureDateInput" class="col-sm-2 col-form-label">
+                    <b>Departure Date</b>
+                </label>
+                <div class="col-sm-10">
+                    <input type="text " name="departureDateInput " id="departureDateInput" placeholder="10/12/2018">
+                </div>
+            </div> -->
+
+    <div class="form-group row">
+        <label for="DepartureDateInput" class="col-sm-2 col-form-label">
+            <b>Departure Date</b>
+        </label>
+        <div class="col-sm-10">
+            <input type="date " name="departureDateInput " id="departureDateInput" placeholder="10/12/2018">
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="seatsInput" class="col-sm-2 col-form-label">
+            <b>Seats Available</b>
+        </label>
+        <div class="col-sm-10">
+            <input type="number" name="seatsInput " id="seatsInput" placeholder="How many seats?">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="gasInput" class="col-sm-2 col-form-label">
+            <b>Gas Estimate</b>
+        </label>
+        <div class="col-sm-10">
+            <input type="number" name="gasInput" id="gasInput" placeholder="$">
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">create new trip</button>
+        </div>
+    </div>
+    </form>
