@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
@@ -19,7 +20,9 @@ const User = require("./models/user.js");
 // Passport Strategy and Configuration
 const bcrypt = require("bcrypt");
 require("./config/passport-config.js");
-mongoose.connect("mongodb://localhost/SampProject-development");
+mongoose.connect(
+  "mongodb://heroku_tm0sstpv:iol7mfel3q20l2hur3k2t58vha@ds153958.mlab.com:53958/heroku_tm0sstpv"
+);
 
 const index = require("./routes/index");
 const users = require("./routes/users");
