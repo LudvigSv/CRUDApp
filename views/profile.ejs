@@ -1,101 +1,30 @@
 <div class="container">
-	<h2>
+	<h2 class="profile-welcome">
+		Hi!
 		<%=user.username%>
 	</h2>
 
-	<button type="submit">Edit Profile</button>
+	<!-- <button type="submit">Edit Profile</button> -->
 
 
 
-	<div>
-		<% console.log("user is: ====", user) %>
 
-			<h3>Trips You're Offering</h3>
-
-			<ul>
-				<% trips.forEach(oneTrip => { %>
-					<%if (user._id.equals(oneTrip._creator)) {%>
-						<li>
-							<span>
-								<b>Destination: </b>
-							</span>
-
-							<%= oneTrip.destination %>
-
-								<br>
-								<span>
-									<b>Pickup Location:</b>
-								</span>
-								<%= oneTrip.pickupLocation %>
-									<br>
-
-									<span>
-										<b>Departure Date:</b>
-									</span>
-									<%= oneTrip.departureDate %>
-										<br>
-
-										<span>
-											<b>Seats Available:</b>
-										</span>
-										<%= oneTrip.seats %>
-											<br>
-
-											<span>
-												<b>Gas Estimate:</b>
-											</span>
-											<%= oneTrip.gas %>
-												<br>
-
-
-												<button type="submit">
-													<a href="/users/profile/rides/<%=oneTrip._id%>">Update</a>
-												</button>
-
-												<form method="POST" action="/users/profile/rides/<%=oneTrip._id%>/delete">
-													<button type="submit">Delete</button>
-												</form>
-												<hr>
-
-						</li>
-
-						<% }%>
-
-							<% })%>
-
-			</ul>
-
+</div>
+<div class="parent-card-profile">
+	<div class="card-profile">
+		<a href="/users/rides">
+			<h3> trips your offering</h3>
+		</a>
 	</div>
-	<hr>
 
-	<div>
-		<h3>Seats You're Claiming</h3>
-
-		<% trips.forEach(oneTrip => { %>
-
-			<% oneTrip.passengers.forEach(onePassenger =>{ %>
-
-
-
-
-				<% console.log("==================") %>
-					<% console.log("user._id is: ", user._id)  %>
-
-						<% console.log("oneTrip.passenger ID is: ", onePassenger._id)  %>
-							<% console.log("==================") %>
-
-
-
-
-								<% if(user._id.equals(onePassenger._id)){ %>
-
-
-									<%= oneTrip.destination %>
-										<% } %>
-											<% }) %>
-
-												<% }) %>
-
-
+	<div class="card-profile">
+		<a href="/users/seats">
+			<h3> seats your claiming</h3>
+		</a>
 	</div>
+</div>
+<hr>
+<form action="/logout" method="POST">
+	<button class="btn btn-link btn-logout" type="submit">Logout</button>
+</form>
 </div>

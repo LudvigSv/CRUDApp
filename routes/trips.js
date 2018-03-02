@@ -49,6 +49,10 @@ router.post("/trips", (req, res, next) => {
 
 // display all the trips:
 router.get("/find-rides", (req, res, next) => {
+  if (req.user === undefined) {
+    res.redirect("/login");
+    return;
+  }
   Trip.find((err, trips) => {
     if (err) {
       return next(err);
@@ -79,6 +83,8 @@ router.post("/:id/add", (req, res, next) => {
         return;
       }
       theTrip.passengers.push(req.user._id);
+      // THIS IS WHAT YOU SHOULD HAVE DONE
+      // theTrip.seats += 1;
       theTrip.claimed = true;
       theUser.rides.push(theTrip);
       theUser.save(err => {
@@ -137,9 +143,14 @@ router.post("/profile/edit-profile/:id", (req, res, next) => {
 // });
 
 //////////////// UPDATE TRIP FROM PROFILE /////////////////
-///// EDIT TRIP//////
+
+// SHOW RIDES OFFERED
 router.get("/users/profile", (req, res, next) => {
   console.log("im from the profile route");
+  if (req.user === undefined) {
+    res.redirect("/login");
+    return;
+  }
   User.findById(req.user._id, (err, theUser) => {
     Trip.find({}, (err, theTrips) => {
       if (err) {
@@ -149,6 +160,42 @@ router.get("/users/profile", (req, res, next) => {
         trips: theTrips,
         user: theUser
       });
+    });
+  });
+});
+
+router.get("/users/rides", (req, res, next) => {
+  console.log("im from the profile route");
+  if (req.user === undefined) {
+    res.redirect("/login");
+    return;
+  }
+  User.findById(req.user._id, (err, theUser) => {
+    Trip.find({}, (err, theTrips) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("trips-offered", {
+        trips: theTrips,
+        user: theUser
+      });
+    });
+  });
+});
+
+// SHOW CLAIMED RIDES
+router.get("/users/seats", (req, res, next) => {
+  console.log("im from the profile route");
+  if (req.user === undefined) {
+    res.redirect("/login");
+    return;
+  }
+  Trip.find({ passengers: req.user._id }, (err, theRides) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("claimed-rides", {
+      rides: theRides
     });
   });
 });

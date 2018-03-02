@@ -1,11 +1,28 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
   /* color: black; */
 }
 
+button {
+  color: black;
+}
+
 a {
-  color: #00b7ff;
+  /* color: #00b7ff; */
+}
+
+h2 {
+  padding-top: 30px;
+  margin-left: 420px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.profile-header {
+  text-align: center;
+  margin-left: 200px;
 }
 
 .main-container {
@@ -13,12 +30,15 @@ a {
 }
 
 nav.navbar {
-  box-shadow: 0px 4px 10px 0 rgba(255, 0, 0, 0.18);
+  box-shadow: 0px 4px 10px 0 rgba(0, 0, 0, 0.24);
   margin-bottom: 0;
 }
 
 .nav > li > a {
   color: black;
+  font-family: Arial;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .nav > li.nav-logo {
@@ -41,7 +61,7 @@ nav.navbar {
 .btn-logout {
   color: black;
   padding: 15px;
-  border: 0;
+  font-size: 1.2em;
 }
 
 .home-heading {
@@ -66,6 +86,7 @@ nav.navbar {
   font-size: 9rem;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.89);
+  font-style: Arial;
 }
 
 .home-heading-wrapper > p {
@@ -77,4 +98,40 @@ nav.navbar {
 .trip-post {
   font-size: 1.2em;
   margin-left: 100px;
+}
+
+.trip-ceate-submit {
+  font-size: 1.8em;
+}
+
+.create-trip-btn {
+  margin: 10px 481px;
+  background-color: beige;
+  border-radius: 2%;
+  padding: 6px;
+}
+
+.test {
+  background-color: red;
+}
+
+.card-profile {
+  background-color: white;
+  box-shadow: 0px 4px 10px 0 rgba(0, 0, 0, 0.24);
+  width: 30%;
+  height: 175px;
+  border-radius: 2%;
+  text-align: center;
+  justify-content: space-between;
+  padding-top: 45px;
+  margin: 20px 130px;
+}
+
+.parent-card-profile {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-welcome {
+  align-content: 0 auto;
 }

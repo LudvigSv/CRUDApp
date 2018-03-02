@@ -1,12 +1,14 @@
-<div class="container find-rides">
+<div class="container find-rides" style="margin-bottom: 20px;">
     <h2>Find Available Seats</h2>
 </div>
 
 
 
-<div class="list-group" style="width: 50%; margin:0 auto;">
+<div class="list-group" style="width: 50%; margin:0 auto; font-size: 16px;">
     <% trips.forEach((trip) => { %>
         <% console.log("trip from ejs:", trip) %>
+
+            <!-- if(!trip.seats === trip.maxSeats) -->
             <% if(!trip.claimed){ %>
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
@@ -44,7 +46,7 @@
                     </p>
                     <% if((user._id.equals(trip._creator)) === false){ %>
                         <form action="/<%=trip._id%>/add" method="post">
-                            <button class="buttonClicked"> Claim this ride </button>
+                            <button class="buttonClicked"> claim this trip </button>
                             <% } %>
 
                 </a>

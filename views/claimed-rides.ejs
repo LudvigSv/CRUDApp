@@ -1,0 +1,42 @@
+<div class="container">
+    <h3>
+        <b>
+            <em>Your Upcoming Trips</em>
+        </b>
+    </h3>
+    <% rides.forEach((oneRide) => { %>
+
+        <span>
+            <b>Destination: </b>
+        </span>
+
+        <%= oneRide.destination %>
+
+            <br>
+            <span>
+                <b>Pickup Location:</b>
+            </span>
+            <%= oneRide.pickupLocation %>
+                <br>
+
+                <span>
+                    <b>Departure Date:</b>
+                </span>
+                <%= oneRide.departureDate %>
+                    <br>
+
+                    <span>
+                        <b>Seats Available:</b>
+                    </span>
+                    <%= oneRide.seats %>
+                        <br>
+
+                        <span>
+                            <b>Gas Estimate: $</b>
+                        </span>
+                        <%= oneRide.gas %>
+                            <br>
+                            <hr>
+                            <% }) %>
+
+</div>
